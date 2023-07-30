@@ -1,0 +1,13 @@
+body {
+  background-color: red;
+}
+
+.main-container {
+  background-color: bisque;
+  height: 100vh;
+}
+
+/* nav bar active links styling*/
+.navbar-nav .nav-link.active {
+  font-weight: 600;
+}
