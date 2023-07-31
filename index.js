@@ -156,7 +156,11 @@ function getFavouriteCharacters() {
 }
 
 console.log(window.location.pathname);
-if (window.location.pathname == "/myFavourites.html") getFavouriteCharacters();
+if (
+  window.location.pathname == "/myFavourites.html" ||
+  window.location.pathname == "/myFavourites"
+)
+  getFavouriteCharacters();
 
 // event listeners for likes and dislikes and page count
 window.addEventListener("click", (event) => {
