@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MY FAVOURITE HEROS</title>
+    <title>My favourites page</title>
     <link rel="stylesheet" href="./index.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -62,23 +62,74 @@
                 >
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+            <div
+              class="dropdown-menu d-block position-relative border-0 pt-0 pb-0 mx-0 rounded-3 shadow w-300px"
+              data-bs-theme="dark"
+            >
+              <form class="p-2 bg-dark border-bottom border-dark">
+                <input
+                  type="search"
+                  class="form-control bg-dark"
+                  autocomplete="false"
+                  placeholder="Type to filter..."
+                />
+              </form>
+              <ul
+                class="list-unstyled mb-0 position-absolute bg-dark w-100%"
+                id="search-result"
+              >
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2 py-2"
+                    href="#"
+                  >
+                    <span
+                      class="d-inline-block bg-success rounded-circle p-1"
+                    ></span>
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2 py-2"
+                    href="#"
+                  >
+                    <span
+                      class="d-inline-block bg-primary rounded-circle p-1"
+                    ></span>
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2 py-2"
+                    href="#"
+                  >
+                    <span
+                      class="d-inline-block bg-danger rounded-circle p-1"
+                    ></span>
+                    Something else here
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2 py-2"
+                    href="#"
+                  >
+                    <span
+                      class="d-inline-block bg-info rounded-circle p-1"
+                    ></span>
+                    Separated link
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
       <!-- navbar end -->
       <div>
-        <h1>MY FAVOURITES</h1>
+        <h1>my favourites page</h1>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
@@ -89,7 +140,9 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <script src="./assets/jsFiles/manageNavBar.js"></script>
+
     <script src="./index.js" type="module"></script>
+    <script src="./assets/jsFiles/manageNavBar.js"></script>
+    <script src="./assets/jsFiles/manageSearchResult.js"></script>
   </body>
 </html>
