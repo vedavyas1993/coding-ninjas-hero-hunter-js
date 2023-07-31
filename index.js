@@ -120,7 +120,6 @@ async function getCharacters(ofst) {
       // Handle errors here
       console.error("Error fetching data:", error);
     });
-  debugger;
   console.log(response.data);
   // results is items
   const { count, total } = response.data;
