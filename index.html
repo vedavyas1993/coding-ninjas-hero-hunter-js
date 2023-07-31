@@ -128,8 +128,27 @@
         </div>
       </nav>
       <!-- navbar end -->
+      <!-- page start -->
       <div>
-        <h1>HOME page</h1>
+        <!-- pages list -->
+        <div class="navbar-collapse mb-2 mt-2" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button
+                class="btn btn-dark dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Select Page
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark pages-list"></ul>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"
+          id="cards"
+        ></div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
