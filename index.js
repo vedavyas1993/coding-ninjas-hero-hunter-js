@@ -53,7 +53,6 @@ function fillHeart(id) {
 
 // like handler while loading
 function handleLikeAndDislike(hero) {
-  console.log(hero.id);
   const emptyLikeIcon = emptyHeart(hero.id);
   const fillLikeIcon = fillHeart(hero.id);
   if (favouriteHeros == null || favouriteHeros?.length == 0)
@@ -106,7 +105,6 @@ async function getCharacters(ofst) {
   // results is items
   const { count, total } = response.data.data;
   results = response.data.data.results;
-  console.log(results);
   pages = Math.ceil(total / limit);
   for (let i = 1; i <= pages; i++) {
     let li = document.createElement("li");
@@ -121,7 +119,6 @@ async function getCharacters(ofst) {
 if (window.location.pathname == "/index.html") getCharacters(offset);
 // get characters from local storage
 function getFavouriteCharacters() {
-  console.log(window.location.pathname);
   let cardsContainer = document.getElementById("cards");
   cardsContainer.style.marginTop = "-10px";
   cardsContainer.innerHTML = "";
@@ -139,12 +136,10 @@ if (window.location.pathname == "/myFavourites.html") getFavouriteCharacters();
 
 // event listeners for likes and dislikes and page count
 window.addEventListener("click", (event) => {
-  console.log("id", event.target);
   let heroId = event.target.dataset.id;
   if (event.target.classList.contains("page-num")) {
     let page = Number(event.target.innerText);
     offset = (page - 1) * 50;
-    console.log((page - 1) * 50);
     getCharacters(offset);
   }
   if (event.target.classList.contains("likes")) {
@@ -171,7 +166,6 @@ window.addEventListener("click", (event) => {
         heartContainer.innerHTML = "";
         heartContainer.innerHTML = emptyHeart(heroId);
         favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
-        console.log(favouriteHeros);
         if (window.location.pathname == "/myFavourites.html") {
           getFavouriteCharacters();
         }
