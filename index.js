@@ -64,6 +64,7 @@ function handleLikeAndDislike(hero) {
 }
 // function to add heros list to dom
 function addHeroToDOM(hero, cardsContainer) {
+  console.log(hero);
   let div = document.createElement("div");
   div.classList.add("col");
   div.innerHTML = `
@@ -155,12 +156,13 @@ function getFavouriteCharacters() {
   }
 }
 
-console.log(window.location.pathname);
 if (
   window.location.pathname == "/myFavourites.html" ||
   window.location.pathname == "/myFavourites"
-)
+) {
+  console.log(window.location.pathname);
   getFavouriteCharacters();
+}
 
 // event listeners for likes and dislikes and page count
 window.addEventListener("click", (event) => {
