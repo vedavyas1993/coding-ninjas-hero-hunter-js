@@ -135,7 +135,11 @@ async function getCharacters(ofst) {
     addHeroToDOM(element, cardsContainer);
   });
 }
-if (window.location.pathname == "/index.html") getCharacters(offset);
+if (
+  window.location.pathname == "/index.html" ||
+  window.location.pathname == "/"
+)
+  getCharacters(offset);
 // get characters from local storage
 function getFavouriteCharacters() {
   let cardsContainer = document.getElementById("cards");
@@ -186,7 +190,10 @@ window.addEventListener("click", (event) => {
         heartContainer.innerHTML = "";
         heartContainer.innerHTML = emptyHeart(heroId);
         favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
-        if (window.location.pathname == "/myFavourites.html") {
+        if (
+          window.location.pathname == "/myFavourites.html" ||
+          window.location.pathname == "/myFavourites"
+        ) {
           getFavouriteCharacters();
         }
       }
