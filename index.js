@@ -147,7 +147,7 @@ function getFavouriteCharacters() {
   cardsContainer.style.marginTop = "-10px";
   cardsContainer.innerHTML = "";
   let fav = JSON.parse(localStorage.getItem("favouriteHeros"));
-  if (fav.length > 0) {
+  if (fav && fav.length > 0) {
     fav.forEach((element) => {
       addHeroToDOM(element, cardsContainer);
     });
