@@ -98,13 +98,32 @@ async function getCharacters(ofst) {
   cardsContainer.innerHTML = `<div id="loader-container">
   <span id="loader"></span>
   <h3>LOADING...</h3></div>`;
-  const response = await axios.get(
+  // const response = await axios.get(
+  // `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=d2f97728c6c92cd4cf6452b07f556304&hash=${hash}&limit=${limit}&offset=${ofst}`
+  // );
+  let response;
+  await fetch(
     `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=d2f97728c6c92cd4cf6452b07f556304&hash=${hash}&limit=${limit}&offset=${ofst}`
-  );
-
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Process the data here
+      console.log(data);
+      response = data;
+    })
+    .catch((error) => {
+      // Handle errors here
+      console.error("Error fetching data:", error);
+    });
+  console.log(response.data);
   // results is items
-  const { count, total } = response.data.data;
-  results = response.data.data.results;
+  const { count, total } = response.data;
+  results = response.data.results;
   pages = Math.ceil(total / limit);
   for (let i = 1; i <= pages; i++) {
     let li = document.createElement("li");
