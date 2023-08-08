@@ -99,7 +99,7 @@ async function getCharacters(ofst) {
   <span id="loader"></span>
   <h3>LOADING...</h3></div>`;
   const response = await axios.get(
-    `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=d2f97728c6c92cd4cf6452b07f556304&hash=${hash}&limit=${limit}&offset=${ofst}`
+    `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=d2f97728c6c92cd4cf6452b07f556304&hash=${hash}&limit=${limit}&offset=${ofst}`
   );
   // let response;
   // await fetch(
