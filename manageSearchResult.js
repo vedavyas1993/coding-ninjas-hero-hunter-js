@@ -5,6 +5,6 @@ window.addEventListener("click", (event) => {
   }
   if (event.target.type == "search") {
     let searchResult = document.getElementById("search-result");
-    searchResult.style.display = "block";
+    searchResult.style.display = "flex";
   }
 });
