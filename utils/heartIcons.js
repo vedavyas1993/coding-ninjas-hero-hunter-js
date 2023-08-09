@@ -35,7 +35,8 @@ export function fillHeart(id) {
 }
 
 // like handler while loading
-export function handleLikeAndDislike(hero, favouriteHeros) {
+export function handleLikeAndDislike(hero) {
+  let favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
   const emptyLikeIcon = emptyHeart(hero.id);
   const fillLikeIcon = fillHeart(hero.id);
   if (favouriteHeros == null || favouriteHeros?.length == 0) {

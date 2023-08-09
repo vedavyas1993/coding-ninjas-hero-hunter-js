@@ -25,7 +25,7 @@ function addHeroToDOM(hero, cardsContainer) {
     hero.id
   } />
               <div class="heart-container position-absolute" id=${hero.id}>
-                      ${handleLikeAndDislike(hero, favouriteHeros)}
+                      ${handleLikeAndDislike(hero)}
               </div>
               <hr class="text-danger" />
               <div class="card-body text-light">
