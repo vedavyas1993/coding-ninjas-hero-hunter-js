@@ -1,13 +1,15 @@
+import { tsAndHash } from "./utils/hashGenerator.js";
+import { emptyHeart, fillHeart } from "./utils/heartIcons.js";
 // function for timestamp and hash generation
-function tsAndHash() {
-  let ts = Date.now();
-  let hash = CryptoJS.MD5(
-    ts +
-      "31ae0263348c45192241c66356f2a13e35a9c47b" +
-      "d2f97728c6c92cd4cf6452b07f556304"
-  ).toString();
-  return { ts, hash };
-}
+// function tsAndHash() {
+//   let ts = Date.now();
+//   let hash = CryptoJS.MD5(
+//     ts +
+//       "31ae0263348c45192241c66356f2a13e35a9c47b" +
+//       "d2f97728c6c92cd4cf6452b07f556304"
+//   ).toString();
+//   return { ts, hash };
+// }
 
 let limit = 50;
 let offset = 0;
@@ -16,48 +18,48 @@ let results;
 let favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
 
 // empty like icon
-function emptyHeart(id) {
-  return `
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
-      fill="red"
-      data-id=${id}
-      class="bi bi-heart likes"
-      viewBox="0 0 16 16"
-    >
-      <path data-id=${id} class="likes" d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-    </svg>
-  `;
-}
-// filled like icon
-function fillHeart(id) {
-  return `<svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="22"
-          height="22"
-          fill="red"
-          class="bi bi-heart-fill likes"
-          viewBox="0 0 16 16"
-          data-id=${id}
->
-          <path
-                      data-id=${id}
-                      class="likes"
-            fill-rule="evenodd"
-            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-          />
-        </svg>`;
-}
+// function emptyHeart(id) {
+//   return `
+//     <svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="22"
+//       height="22"
+//       fill="red"
+//       data-id=${id}
+//       class="bi bi-heart likes"
+//       viewBox="0 0 16 16"
+//     >
+//       <path data-id=${id} class="likes" d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+//     </svg>
+//   `;
+// }
+// // filled like icon
+// function fillHeart(id) {
+//   return `<svg
+//           xmlns="http://www.w3.org/2000/svg"
+//           width="22"
+//           height="22"
+//           fill="red"
+//           class="bi bi-heart-fill likes"
+//           viewBox="0 0 16 16"
+//           data-id=${id}
+// >
+//           <path
+//                       data-id=${id}
+//                       class="likes"
+//             fill-rule="evenodd"
+//             d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+//           />
+//         </svg>`;
+// }
 
 // like handler while loading
 function handleLikeAndDislike(hero) {
   const emptyLikeIcon = emptyHeart(hero.id);
   const fillLikeIcon = fillHeart(hero.id);
-  if (favouriteHeros == null || favouriteHeros?.length == 0)
+  if (favouriteHeros == null || favouriteHeros?.length == 0) {
     return emptyLikeIcon;
-  favouriteHeros.findIndex((elem) => elem.id == hero.id) != -1;
+  }
   return favouriteHeros.findIndex((elem) => elem.id == hero.id) != -1
     ? fillLikeIcon
     : emptyLikeIcon;
