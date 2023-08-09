@@ -1,5 +1,9 @@
 import { tsAndHash } from "./utils/hashGenerator.js";
-import { emptyHeart, fillHeart } from "./utils/heartIcons.js";
+import {
+  emptyHeart,
+  fillHeart,
+  handleLikeAndDislike,
+} from "./utils/heartIcons.js";
 
 let limit = 50;
 let offset = 0;
@@ -7,17 +11,6 @@ let pages;
 let results;
 let favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
 
-// like handler while loading
-function handleLikeAndDislike(hero) {
-  const emptyLikeIcon = emptyHeart(hero.id);
-  const fillLikeIcon = fillHeart(hero.id);
-  if (favouriteHeros == null || favouriteHeros?.length == 0) {
-    return emptyLikeIcon;
-  }
-  return favouriteHeros.findIndex((elem) => elem.id == hero.id) != -1
-    ? fillLikeIcon
-    : emptyLikeIcon;
-}
 // function to add heros list to dom
 function addHeroToDOM(hero, cardsContainer) {
   let div = document.createElement("div");
@@ -32,7 +25,7 @@ function addHeroToDOM(hero, cardsContainer) {
     hero.id
   } />
               <div class="heart-container position-absolute" id=${hero.id}>
-                      ${handleLikeAndDislike(hero)}
+                      ${handleLikeAndDislike(hero, favouriteHeros)}
               </div>
               <hr class="text-danger" />
               <div class="card-body text-light">
@@ -78,7 +71,7 @@ if (
 )
   getCharacters(offset);
 // get characters from local storage
-function getFavouriteCharacters() {
+export function getFavouriteCharacters() {
   let cardsContainer = document.getElementById("cards");
   cardsContainer.style.marginTop = "-10px";
   cardsContainer.innerHTML = "";

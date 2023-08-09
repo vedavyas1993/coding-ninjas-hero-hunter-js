@@ -33,3 +33,15 @@ export function fillHeart(id) {
           />
         </svg>`;
 }
+
+// like handler while loading
+export function handleLikeAndDislike(hero, favouriteHeros) {
+  const emptyLikeIcon = emptyHeart(hero.id);
+  const fillLikeIcon = fillHeart(hero.id);
+  if (favouriteHeros == null || favouriteHeros?.length == 0) {
+    return emptyLikeIcon;
+  }
+  return favouriteHeros.findIndex((elem) => elem.id == hero.id) != -1
+    ? fillLikeIcon
+    : emptyLikeIcon;
+}
