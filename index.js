@@ -19,11 +19,11 @@ function addHeroToDOM(hero, cardsContainer) {
             <div class="card h-100 bg-dark position-relative" data-id=${
               hero.id
             }>
-
+<a href="./superhero.html?id=${hero.id}">
               <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}"
                 class="card-img-top card-img" alt="${hero.name}" data-id=${
     hero.id
-  } />
+  } /></a>
               <div class="heart-container position-absolute ${hero.id}" >
                       ${handleLikeAndDislike(hero)}
               </div>
