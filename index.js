@@ -102,7 +102,6 @@ window.addEventListener("click", (event) => {
   }
   if (event.target.classList.contains("likes")) {
     let heartContainer = document.getElementsByClassName(heroId);
-    console.log(heartContainer);
     let arr = results ? results : favouriteHeros;
     const clickedHero = arr.filter((hero) => hero.id == heroId);
     if (favouriteHeros == null || favouriteHeros.length == 0) {
