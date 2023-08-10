@@ -28,7 +28,7 @@ function addHeroToDOM(hero, searchResult) {
                 class="search-img" alt="${hero.name}" data-id=${hero.id} />
   <span>${hero.name}</span>
               <div class="heart-container position-absolute ${hero.id}">
-                      ${handleLikeAndDislike(hero, favouriteHeros)}
+                      ${handleLikeAndDislike(hero, "search")}
               </div>`;
   searchResult.append(li);
 }
@@ -68,7 +68,10 @@ window.addEventListener("click", (event) => {
   if (event.target.type == "search") {
     searchResult.style.display = "flex";
   }
-  if (event.target.classList.contains("likes")) {
+  if (
+    event.target.classList.contains("likes") &&
+    event.target.classList.contains("search")
+  ) {
     let heartContainer = document.getElementsByClassName(heroId);
     let arr = results ? results : favouriteHeros;
     const clickedHero = arr.filter((hero) => hero.id == heroId);
@@ -86,14 +89,19 @@ window.addEventListener("click", (event) => {
         (hero) => hero.id == heroId
       );
       if (isFavouriteHero == -1) {
-        favouriteHeros.push(clickedHero[0]);
-        localStorage.setItem("favouriteHeros", JSON.stringify(favouriteHeros));
-        for (let elem of heartContainer) {
-          elem.innerHTML = "";
-          elem.innerHTML = fillHeart(heroId);
+        if (clickedHero[0]) {
+          favouriteHeros.push(clickedHero[0]);
+          localStorage.setItem(
+            "favouriteHeros",
+            JSON.stringify(favouriteHeros)
+          );
+          for (let elem of heartContainer) {
+            elem.innerHTML = "";
+            elem.innerHTML = fillHeart(heroId);
+          }
+          favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
+          loadFavHeros();
         }
-        favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
-        loadFavHeros();
       } else {
         favouriteHeros.splice(isFavouriteHero, 1);
         localStorage.setItem("favouriteHeros", JSON.stringify(favouriteHeros));

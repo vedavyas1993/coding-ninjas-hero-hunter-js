@@ -94,13 +94,17 @@ if (
 
 // event listeners for likes and dislikes and page count
 window.addEventListener("click", (event) => {
+  console.log(event.target);
   let heroId = event.target.dataset.id;
   if (event.target.classList.contains("page-num")) {
     let page = Number(event.target.innerText);
     offset = (page - 1) * 50;
     getCharacters(offset);
   }
-  if (event.target.classList.contains("likes")) {
+  if (
+    event.target.classList.contains("likes") &&
+    !event.target.classList.contains("search")
+  ) {
     let heartContainer = document.getElementsByClassName(heroId);
     let arr = results ? results : favouriteHeros;
     const clickedHero = arr.filter((hero) => hero.id == heroId);
@@ -117,11 +121,16 @@ window.addEventListener("click", (event) => {
         (hero) => hero.id == heroId
       );
       if (isFavouriteHero == -1) {
-        favouriteHeros.push(clickedHero[0]);
-        localStorage.setItem("favouriteHeros", JSON.stringify(favouriteHeros));
-        for (let elem of heartContainer) {
-          elem.innerHTML = "";
-          elem.innerHTML = fillHeart(heroId);
+        if (clickedHero[0]) {
+          favouriteHeros.push(clickedHero[0]);
+          localStorage.setItem(
+            "favouriteHeros",
+            JSON.stringify(favouriteHeros)
+          );
+          for (let elem of heartContainer) {
+            elem.innerHTML = "";
+            elem.innerHTML = fillHeart(heroId);
+          }
         }
       } else {
         favouriteHeros.splice(isFavouriteHero, 1);
