@@ -52,6 +52,7 @@ async function getCharacters(ofst) {
     `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=d2f97728c6c92cd4cf6452b07f556304&hash=${hash}&limit=${limit}&offset=${ofst}`
   );
   const { count, total } = response.data.data;
+  console.log(response);
   results = response.data.data.results;
   pages = Math.ceil(total / limit);
   for (let i = 1; i <= pages; i++) {
@@ -68,8 +69,9 @@ async function getCharacters(ofst) {
 if (
   window.location.pathname == "/index.html" ||
   window.location.pathname == "/"
-)
+) {
   getCharacters(offset);
+}
 // get characters from local storage
 export function getFavouriteCharacters() {
   let cardsContainer = document.getElementById("cards");
@@ -94,7 +96,7 @@ if (
 
 // event listeners for likes and dislikes and page count
 window.addEventListener("click", (event) => {
-  console.log(event.target);
+  console.log("...", event.target, results);
   let heroId = event.target.dataset.id;
   if (event.target.classList.contains("page-num")) {
     let page = Number(event.target.innerText);
@@ -105,9 +107,18 @@ window.addEventListener("click", (event) => {
     event.target.classList.contains("likes") &&
     !event.target.classList.contains("search")
   ) {
+    favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
+
     let heartContainer = document.getElementsByClassName(heroId);
-    let arr = results ? results : favouriteHeros;
+    let arr;
+    if (window.location.pathname == "/index.html") {
+      arr = results;
+    } else {
+      arr = favouriteHeros;
+    }
     const clickedHero = arr.filter((hero) => hero.id == heroId);
+    console.log(arr, clickedHero, heroId);
+
     if (favouriteHeros == null || favouriteHeros.length == 0) {
       localStorage.setItem("favouriteHeros", JSON.stringify(clickedHero));
       for (let elem of heartContainer) {

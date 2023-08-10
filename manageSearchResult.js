@@ -7,8 +7,7 @@ import {
 } from "./utils/heartIcons.js";
 const searchResult = document.getElementById("search-result");
 const search = document.getElementById("search");
-
-let results;
+let searchResults;
 let favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
 
 search.addEventListener("keypress", (event) => {
@@ -43,10 +42,10 @@ async function getCharacters(searchStr) {
     `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=d2f97728c6c92cd4cf6452b07f556304&hash=${hash}&nameStartsWith=${searchStr}`
   );
 
-  results = response.data.data.results;
+  searchResults = response.data.data.results;
   searchResult.innerHTML = "";
 
-  results.forEach((element) => {
+  searchResults.forEach((element) => {
     addHeroToDOM(element, searchResult);
   });
 }
@@ -61,6 +60,7 @@ function loadFavHeros() {
 }
 window.addEventListener("click", (event) => {
   let heroId = event.target.dataset.id;
+  favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
 
   if (!event.target.classList.contains("dropdown-item")) {
     searchResult.style.display = "none";
@@ -72,9 +72,11 @@ window.addEventListener("click", (event) => {
     event.target.classList.contains("likes") &&
     event.target.classList.contains("search")
   ) {
+    console.log("clicked");
     let heartContainer = document.getElementsByClassName(heroId);
-    let arr = results ? results : favouriteHeros;
+    let arr = searchResults;
     const clickedHero = arr.filter((hero) => hero.id == heroId);
+    console.log("clicked:", clickedHero, "heroid,", heroId);
     if (favouriteHeros == null || favouriteHeros.length == 0) {
       localStorage.setItem("favouriteHeros", JSON.stringify(clickedHero));
       for (let elem of heartContainer) {
@@ -89,6 +91,7 @@ window.addEventListener("click", (event) => {
         (hero) => hero.id == heroId
       );
       if (isFavouriteHero == -1) {
+        console.log("here1");
         if (clickedHero[0]) {
           favouriteHeros.push(clickedHero[0]);
           localStorage.setItem(
@@ -103,6 +106,7 @@ window.addEventListener("click", (event) => {
           loadFavHeros();
         }
       } else {
+        console.log("here2");
         favouriteHeros.splice(isFavouriteHero, 1);
         localStorage.setItem("favouriteHeros", JSON.stringify(favouriteHeros));
         for (let elem of heartContainer) {
