@@ -1,12 +1,12 @@
-const searchResult = document.getElementById("search-result");
-const search = document.getElementById("search");
-
+import { getFavouriteCharacters } from "./index.js";
 import { tsAndHash } from "./utils/hashGenerator.js";
 import {
   emptyHeart,
   fillHeart,
   handleLikeAndDislike,
 } from "./utils/heartIcons.js";
+const searchResult = document.getElementById("search-result");
+const search = document.getElementById("search");
 
 let results;
 let favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
@@ -23,23 +23,11 @@ function addHeroToDOM(hero, searchResult) {
   let li = document.createElement("li");
   li.classList.add("d-flex");
   li.classList.add("position-relative");
-
-  // <li>
-  //                 <a
-  //                   class="dropdown-item d-flex align-items-center gap-2 py-2"
-  //                   href="#"
-  //                 >
-  //                   <span
-  //                     class="d-inline-block bg-success rounded-circle p-1"
-  //                   ></span>
-  //                   Action
-  //                 </a>
-  //               </li>
   li.innerHTML = `
               <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}"
                 class="search-img" alt="${hero.name}" data-id=${hero.id} />
   <span>${hero.name}</span>
-              <div class="heart-container position-absolute" id=${hero.id}>
+              <div class="heart-container position-absolute ${hero.id}">
                       ${handleLikeAndDislike(hero, favouriteHeros)}
               </div>`;
   searchResult.append(li);
@@ -71,5 +59,12 @@ window.addEventListener("click", (event) => {
   }
   if (event.target.type == "search") {
     searchResult.style.display = "flex";
+  }
+  if (
+    event.target.classList.contains("likes") &&
+    (window.location.pathname == "/myFavourites.html" ||
+      window.location.pathname == "/myFavourites")
+  ) {
+    getFavouriteCharacters();
   }
 });

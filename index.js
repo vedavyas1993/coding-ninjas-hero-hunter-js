@@ -24,7 +24,7 @@ function addHeroToDOM(hero, cardsContainer) {
                 class="card-img-top card-img" alt="${hero.name}" data-id=${
     hero.id
   } />
-              <div class="heart-container position-absolute" id=${hero.id}>
+              <div class="heart-container position-absolute ${hero.id}" >
                       ${handleLikeAndDislike(hero)}
               </div>
               <hr class="text-danger" />
@@ -101,13 +101,17 @@ window.addEventListener("click", (event) => {
     getCharacters(offset);
   }
   if (event.target.classList.contains("likes")) {
-    let heartContainer = document.getElementById(heroId);
+    let heartContainer = document.getElementsByClassName(heroId);
+    console.log(heartContainer);
     let arr = results ? results : favouriteHeros;
     const clickedHero = arr.filter((hero) => hero.id == heroId);
     if (favouriteHeros == null || favouriteHeros.length == 0) {
       localStorage.setItem("favouriteHeros", JSON.stringify(clickedHero));
-      heartContainer.innerHTML = "";
-      heartContainer.innerHTML = fillHeart(heroId);
+      for (let elem of heartContainer) {
+        elem.innerHTML = "";
+        elem.innerHTML = fillHeart(heroId);
+      }
+
       favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
     } else {
       let isFavouriteHero = favouriteHeros.findIndex(
@@ -116,13 +120,17 @@ window.addEventListener("click", (event) => {
       if (isFavouriteHero == -1) {
         favouriteHeros.push(clickedHero[0]);
         localStorage.setItem("favouriteHeros", JSON.stringify(favouriteHeros));
-        heartContainer.innerHTML = "";
-        heartContainer.innerHTML = fillHeart(heroId);
+        for (let elem of heartContainer) {
+          elem.innerHTML = "";
+          elem.innerHTML = fillHeart(heroId);
+        }
       } else {
         favouriteHeros.splice(isFavouriteHero, 1);
         localStorage.setItem("favouriteHeros", JSON.stringify(favouriteHeros));
-        heartContainer.innerHTML = "";
-        heartContainer.innerHTML = emptyHeart(heroId);
+        for (let elem of heartContainer) {
+          elem.innerHTML = "";
+          elem.innerHTML = emptyHeart(heroId);
+        }
         favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
         if (
           window.location.pathname == "/myFavourites.html" ||
