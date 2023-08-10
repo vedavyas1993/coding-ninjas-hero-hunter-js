@@ -52,7 +52,6 @@ async function getCharacters(ofst) {
     `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=d2f97728c6c92cd4cf6452b07f556304&hash=${hash}&limit=${limit}&offset=${ofst}`
   );
   const { count, total } = response.data.data;
-  console.log(response);
   results = response.data.data.results;
   pages = Math.ceil(total / limit);
   for (let i = 1; i <= pages; i++) {
@@ -83,7 +82,7 @@ export function getFavouriteCharacters() {
       addHeroToDOM(element, cardsContainer);
     });
   } else {
-    cardsContainer.innerHTML = `<h1 class="text-center m-auto mt-5 text-danger">Add Favourites</h1>`;
+    cardsContainer.innerHTML = `<h1 class="text-center m-auto mt-5 text-light">Add Favourites...</h1>`;
   }
 }
 
@@ -96,7 +95,6 @@ if (
 
 // event listeners for likes and dislikes and page count
 window.addEventListener("click", (event) => {
-  console.log("...", event.target, results);
   let heroId = event.target.dataset.id;
   if (event.target.classList.contains("page-num")) {
     let page = Number(event.target.innerText);
@@ -117,7 +115,6 @@ window.addEventListener("click", (event) => {
       arr = favouriteHeros;
     }
     const clickedHero = arr.filter((hero) => hero.id == heroId);
-    console.log(arr, clickedHero, heroId);
 
     if (favouriteHeros == null || favouriteHeros.length == 0) {
       localStorage.setItem("favouriteHeros", JSON.stringify(clickedHero));

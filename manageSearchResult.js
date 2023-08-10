@@ -72,11 +72,9 @@ window.addEventListener("click", (event) => {
     event.target.classList.contains("likes") &&
     event.target.classList.contains("search")
   ) {
-    console.log("clicked");
     let heartContainer = document.getElementsByClassName(heroId);
     let arr = searchResults;
     const clickedHero = arr.filter((hero) => hero.id == heroId);
-    console.log("clicked:", clickedHero, "heroid,", heroId);
     if (favouriteHeros == null || favouriteHeros.length == 0) {
       localStorage.setItem("favouriteHeros", JSON.stringify(clickedHero));
       for (let elem of heartContainer) {
@@ -91,7 +89,6 @@ window.addEventListener("click", (event) => {
         (hero) => hero.id == heroId
       );
       if (isFavouriteHero == -1) {
-        console.log("here1");
         if (clickedHero[0]) {
           favouriteHeros.push(clickedHero[0]);
           localStorage.setItem(
@@ -106,7 +103,6 @@ window.addEventListener("click", (event) => {
           loadFavHeros();
         }
       } else {
-        console.log("here2");
         favouriteHeros.splice(isFavouriteHero, 1);
         localStorage.setItem("favouriteHeros", JSON.stringify(favouriteHeros));
         for (let elem of heartContainer) {
