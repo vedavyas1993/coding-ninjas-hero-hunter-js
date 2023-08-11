@@ -86,6 +86,8 @@ if (
   window.location.pathname == "/myFavourites.html" ||
   window.location.pathname == "/myFavourites"
 ) {
+  let title = document.getElementsByTagName("title");
+  title[0].innerText = "My Favourites";
   getFavouriteCharacters();
 }
 

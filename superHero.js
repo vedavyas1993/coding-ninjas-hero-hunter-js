@@ -105,6 +105,8 @@ async function getHero(heroId) {
     `https://gateway.marvel.com/v1/public/characters/${heroId}?ts=${ts}&apikey=d2f97728c6c92cd4cf6452b07f556304&hash=${hash}`
   );
   character = response.data.data.results[0];
+  let title = document.getElementsByTagName("title");
+  title[0].innerText = `${character.name}`;
   heroContainer[0].innerHTML = "";
   addCharToDOM(character, heroContainer[0]);
 }
