@@ -4,7 +4,7 @@ import {
   fillHeart,
   handleLikeAndDislike,
 } from "./utils/heartIcons.js";
-
+const { ts, hash } = tsAndHash();
 const superHeroId = window.location.search.split("=")[1];
 const heroContainer = document.getElementsByClassName("hero-container");
 
@@ -29,10 +29,16 @@ function addCharToDOM(hero, container) {
             </div>
             `;
   container.append(div);
+  const info = document.getElementsByClassName("info-container");
+  info[0].classList.add("text-light");
+  info[0].innerHTML = `
+  <h3>Description : </h3><p>${
+    character.description ? character.description : "No info available."
+  }</p>
+    `;
 }
 
 async function getHero(heroId) {
-  const { ts, hash } = tsAndHash();
   heroContainer[0].innerHTML = `<div id="loader-container">
   <span id="loader"></span>
   <h3>LOADING...</h3></div>`;
