@@ -61,10 +61,6 @@ function loadFavHeros() {
 window.addEventListener("click", (event) => {
   let heroId = event.target.dataset.id;
   favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
-  console.log("vyas", event.target);
-  // if (!event.target.classList.contains("dropdown-item")) {
-  //   searchResult.style.display = "none";
-  // }
   if (
     event.target.type == "search" ||
     (event.target.classList.contains("likes") &&

@@ -89,7 +89,6 @@ function addCharToDOM(hero, container) {
     h3.innerHTML = `Events :`;
     info[0].append(h3);
     for (let item of character.events.items) {
-      console.log(item);
       let p = document.createElement("p");
       p.innerHTML = `${item.name}`;
       info[0].append(p);
