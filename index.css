@@ -122,3 +122,19 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #ff0000;
 }
+
+.character {
+  background-color: #21252980 !important;
+}
+
+.char-img {
+  min-height: 350px;
+  height: 70vh;
+  border-radius: 10px;
+}
+.info-container {
+  flex: 1;
+  background-color: #21252980 !important;
+  margin-left: 20px;
+  border-radius: 10px;
+}

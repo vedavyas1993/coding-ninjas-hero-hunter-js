@@ -27,14 +27,10 @@ function addHeroToDOM(hero, cardsContainer) {
               <div class="heart-container position-absolute ${hero.id}" >
                       ${handleLikeAndDislike(hero)}
               </div>
-              <hr class="text-danger" />
+              <hr class="text-danger mb-0 d" />
               <div class="card-body text-light">
                 <h5 class="card-title">${hero.name}</h5>
-                <p class="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
+               
               </div>
             </div>`;
   cardsContainer.append(div);

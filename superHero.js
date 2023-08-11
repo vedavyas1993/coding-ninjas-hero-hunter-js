@@ -11,28 +11,23 @@ const heroContainer = document.getElementsByClassName("hero-container");
 let character;
 function addCharToDOM(hero, container) {
   let div = document.createElement("div");
-  div.classList.add("col");
+  div.classList.add("d-flex");
   div.innerHTML = `
-            <div class="card h-100 bg-dark position-relative" data-id=${
-              hero.id
-            } style="width:400px">
+  <div class="card h-100 character position-relative" data-id=${
+    hero.id
+  } style="width:400px">
+  <h1 class="text-light text-center">${character.name}</h1>
               <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}"
-                class="card-img-top card-img" alt="${hero.name}" data-id=${
+                class="card-img-top char-img" alt="${hero.name}" data-id=${
     hero.id
   } />
               <div class="heart-container position-absolute ${hero.id}" >
                       ${handleLikeAndDislike(hero)}
               </div>
-              <hr class="text-danger" />
-              <div class="card-body text-light">
-                <h5 class="card-title">${hero.name}</h5>
-                <p class="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-              </div>
-            </div>`;
+            </div>
+            <div class="info-container">
+            </div>
+            `;
   container.append(div);
 }
 
