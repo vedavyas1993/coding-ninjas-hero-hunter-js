@@ -13,9 +13,7 @@ function addCharToDOM(hero, container) {
   let div = document.createElement("div");
   div.classList.add("d-flex");
   div.innerHTML = `
-  <div class="card h-100 character position-relative" data-id=${
-    hero.id
-  } style="width:400px">
+  <div class="card h-100 character" data-id=${hero.id} style="width:400px">
   <h1 class="text-light text-center">${character.name}</h1>
               <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}"
                 class="card-img-top char-img" alt="${hero.name}" data-id=${
@@ -31,11 +29,72 @@ function addCharToDOM(hero, container) {
   container.append(div);
   const info = document.getElementsByClassName("info-container");
   info[0].classList.add("text-light");
+
   info[0].innerHTML = `
   <h3>Description : </h3><p>${
     character.description ? character.description : "No info available."
   }</p>
     `;
+  // LINKS
+  if (character.urls && character.urls.length > 0) {
+    let h3 = document.createElement("h3");
+    h3.innerHTML = `Links :`;
+    info[0].append(h3);
+    for (let link of character.urls) {
+      let a = document.createElement("a");
+      a.setAttribute("href", `${link.url}`);
+      a.setAttribute("target", `_blank`);
+
+      a.innerHTML = `${link.type}`;
+      info[0].append(a);
+    }
+  }
+  // comics
+  if (character.comics.items && character.comics.items.length > 0) {
+    let h3 = document.createElement("h3");
+    h3.innerHTML = `Comics :`;
+    info[0].append(h3);
+    for (let item of character.comics.items) {
+      let p = document.createElement("p");
+      p.innerHTML = `${item.name}`;
+      info[0].append(p);
+    }
+  }
+  // SERIES
+
+  if (character.series.items && character.series.items.length > 0) {
+    let h3 = document.createElement("h3");
+    h3.innerHTML = `Series :`;
+    info[0].append(h3);
+    for (let item of character.series.items) {
+      let p = document.createElement("p");
+      p.innerHTML = `${item.name}`;
+      info[0].append(p);
+    }
+  }
+  // STORIES;
+  if (character.stories.items && character.stories.items.length > 0) {
+    let h3 = document.createElement("h3");
+    h3.innerHTML = `Stories :`;
+    info[0].append(h3);
+    for (let item of character.stories.items) {
+      let p = document.createElement("p");
+      p.innerHTML = `${item.name}`;
+      info[0].append(p);
+    }
+  }
+  // Events
+  if (character.events.items && character.events.items.length > 0) {
+    let h3 = document.createElement("h3");
+    h3.innerHTML = `Events :`;
+    info[0].append(h3);
+    for (let item of character.events.items) {
+      console.log(item);
+      let p = document.createElement("p");
+      p.innerHTML = `${item.name}`;
+      info[0].append(p);
+    }
+  }
 }
 
 async function getHero(heroId) {
