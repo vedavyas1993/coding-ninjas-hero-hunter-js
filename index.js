@@ -95,64 +95,72 @@ if (
 
 // event listeners for likes and dislikes and page count
 window.addEventListener("click", (event) => {
-  let heroId = event.target.dataset.id;
-  if (event.target.classList.contains("page-num")) {
-    let page = Number(event.target.innerText);
-    offset = (page - 1) * 50;
-    getCharacters(offset);
-  }
   if (
-    event.target.classList.contains("likes") &&
-    !event.target.classList.contains("search")
+    window.location.pathname == "/index.html" ||
+    window.location.pathname == "/myFavourites.html"
   ) {
-    favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
-
-    let heartContainer = document.getElementsByClassName(heroId);
-    let arr;
-    if (window.location.pathname == "/index.html") {
-      arr = results;
-    } else {
-      arr = favouriteHeros;
+    let heroId = event.target.dataset.id;
+    if (event.target.classList.contains("page-num")) {
+      let page = Number(event.target.innerText);
+      offset = (page - 1) * 50;
+      getCharacters(offset);
     }
-    const clickedHero = arr.filter((hero) => hero.id == heroId);
-
-    if (favouriteHeros == null || favouriteHeros.length == 0) {
-      localStorage.setItem("favouriteHeros", JSON.stringify(clickedHero));
-      for (let elem of heartContainer) {
-        elem.innerHTML = "";
-        elem.innerHTML = fillHeart(heroId);
-      }
-
+    if (
+      event.target.classList.contains("likes") &&
+      !event.target.classList.contains("search")
+    ) {
       favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
-    } else {
-      let isFavouriteHero = favouriteHeros.findIndex(
-        (hero) => hero.id == heroId
-      );
-      if (isFavouriteHero == -1) {
-        if (clickedHero[0]) {
-          favouriteHeros.push(clickedHero[0]);
+
+      let heartContainer = document.getElementsByClassName(heroId);
+      let arr;
+      if (window.location.pathname == "/index.html") {
+        arr = results;
+      } else {
+        arr = favouriteHeros;
+      }
+      const clickedHero = arr.filter((hero) => hero.id == heroId);
+
+      if (favouriteHeros == null || favouriteHeros.length == 0) {
+        localStorage.setItem("favouriteHeros", JSON.stringify(clickedHero));
+        for (let elem of heartContainer) {
+          elem.innerHTML = "";
+          elem.innerHTML = fillHeart(heroId);
+        }
+
+        favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
+      } else {
+        let isFavouriteHero = favouriteHeros.findIndex(
+          (hero) => hero.id == heroId
+        );
+        if (isFavouriteHero == -1) {
+          if (clickedHero[0]) {
+            favouriteHeros.push(clickedHero[0]);
+            localStorage.setItem(
+              "favouriteHeros",
+              JSON.stringify(favouriteHeros)
+            );
+            for (let elem of heartContainer) {
+              elem.innerHTML = "";
+              elem.innerHTML = fillHeart(heroId);
+            }
+          }
+        } else {
+          favouriteHeros.splice(isFavouriteHero, 1);
           localStorage.setItem(
             "favouriteHeros",
             JSON.stringify(favouriteHeros)
           );
           for (let elem of heartContainer) {
             elem.innerHTML = "";
-            elem.innerHTML = fillHeart(heroId);
+            elem.innerHTML = emptyHeart(heroId);
           }
-        }
-      } else {
-        favouriteHeros.splice(isFavouriteHero, 1);
-        localStorage.setItem("favouriteHeros", JSON.stringify(favouriteHeros));
-        for (let elem of heartContainer) {
-          elem.innerHTML = "";
-          elem.innerHTML = emptyHeart(heroId);
-        }
-        favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
-        if (
-          window.location.pathname == "/myFavourites.html" ||
-          window.location.pathname == "/myFavourites"
-        ) {
-          getFavouriteCharacters();
+          favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
+          if (
+            window.location.pathname == "/myFavourites.html" ||
+            window.location.pathname == "/myFavourites"
+          ) {
+            getFavouriteCharacters();
+          }
         }
       }
     }
