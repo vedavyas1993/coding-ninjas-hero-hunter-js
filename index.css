@@ -143,3 +143,26 @@ body {
 .info-container h3 {
   text-decoration: overline;
 }
+
+a {
+  text-decoration: none !important;
+}
+/* unvisited link */
+a:link {
+  color: #f8f9fa;
+}
+
+/* visited link */
+a:visited {
+  color: #f8f9fa;
+}
+
+/* mouse over link */
+a:hover {
+  color: #f8f9fa;
+}
+
+/* selected link */
+a:active {
+  color: #f8f9fa;
+}
