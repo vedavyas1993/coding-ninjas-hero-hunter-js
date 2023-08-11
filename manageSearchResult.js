@@ -61,12 +61,18 @@ function loadFavHeros() {
 window.addEventListener("click", (event) => {
   let heroId = event.target.dataset.id;
   favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
-
-  if (!event.target.classList.contains("dropdown-item")) {
-    searchResult.style.display = "none";
-  }
-  if (event.target.type == "search") {
+  console.log("vyas", event.target);
+  // if (!event.target.classList.contains("dropdown-item")) {
+  //   searchResult.style.display = "none";
+  // }
+  if (
+    event.target.type == "search" ||
+    (event.target.classList.contains("likes") &&
+      event.target.classList.contains("search"))
+  ) {
     searchResult.style.display = "flex";
+  } else {
+    searchResult.style.display = "none";
   }
   if (
     event.target.classList.contains("likes") &&
@@ -79,7 +85,7 @@ window.addEventListener("click", (event) => {
       localStorage.setItem("favouriteHeros", JSON.stringify(clickedHero));
       for (let elem of heartContainer) {
         elem.innerHTML = "";
-        elem.innerHTML = fillHeart(heroId);
+        elem.innerHTML = fillHeart(heroId, "search");
       }
 
       favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
@@ -97,7 +103,7 @@ window.addEventListener("click", (event) => {
           );
           for (let elem of heartContainer) {
             elem.innerHTML = "";
-            elem.innerHTML = fillHeart(heroId);
+            elem.innerHTML = fillHeart(heroId, "search");
           }
           favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
           loadFavHeros();
@@ -107,7 +113,7 @@ window.addEventListener("click", (event) => {
         localStorage.setItem("favouriteHeros", JSON.stringify(favouriteHeros));
         for (let elem of heartContainer) {
           elem.innerHTML = "";
-          elem.innerHTML = emptyHeart(heroId);
+          elem.innerHTML = emptyHeart(heroId, "search");
         }
         favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
         loadFavHeros();
