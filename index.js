@@ -62,7 +62,7 @@ async function getCharacters(ofst) {
 }
 
 if (
-  window.location.pathname == "/index.html" ||
+  window.location.pathname.contains("/index.html") ||
   window.location.pathname == "/"
 ) {
   getCharacters(offset);
@@ -83,8 +83,8 @@ export function getFavouriteCharacters() {
 }
 
 if (
-  window.location.pathname == "/myFavourites.html" ||
-  window.location.pathname == "/myFavourites"
+  window.location.pathname.contains("/myFavourites.html") ||
+  window.location.pathname.contains("/myFavourites")
 ) {
   let title = document.getElementsByTagName("title");
   title[0].innerText = "My Favourites";
@@ -94,8 +94,8 @@ if (
 // event listeners for likes and dislikes and page count
 window.addEventListener("click", (event) => {
   if (
-    window.location.pathname == "/index.html" ||
-    window.location.pathname == "/myFavourites.html"
+    window.location.pathname.contains("/index.html") ||
+    window.location.pathname.contains("/myFavourites.html")
   ) {
     let heroId = event.target.dataset.id;
     if (event.target.classList.contains("page-num")) {
@@ -111,7 +111,7 @@ window.addEventListener("click", (event) => {
 
       let heartContainer = document.getElementsByClassName(heroId);
       let arr;
-      if (window.location.pathname == "/index.html") {
+      if (window.location.pathname.contains("/index.html")) {
         arr = results;
       } else {
         arr = favouriteHeros;
@@ -154,8 +154,8 @@ window.addEventListener("click", (event) => {
           }
           favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
           if (
-            window.location.pathname == "/myFavourites.html" ||
-            window.location.pathname == "/myFavourites"
+            window.location.pathname.contains("/myFavourites.html") ||
+            window.location.pathname.contains("/myFavourites")
           ) {
             getFavouriteCharacters();
           }
