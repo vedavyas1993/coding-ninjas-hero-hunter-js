@@ -53,7 +53,9 @@ async function getCharacters(searchStr) {
 function loadFavHeros() {
   if (
     window.location.pathname == "/myFavourites.html" ||
-    window.location.pathname == "/myFavourites"
+    window.location.pathname == "/myFavourites" ||
+    window.location.pathname ==
+      "/coding-ninjas-hero-hunter-js/myFavourites.html"
   ) {
     getFavouriteCharacters();
   }

@@ -64,9 +64,9 @@ async function getCharacters(ofst) {
 if (
   window.location.pathname == "/index.html" ||
   window.location.pathname == "/" ||
-  window.location.pathname == "/coding-ninjas-hero-hunter-js/"
+  window.location.pathname == "/coding-ninjas-hero-hunter-js/" ||
+  window.location.pathname == "/coding-ninjas-hero-hunter-js/index.html"
 ) {
-  console.log("triggrre");
   getCharacters(offset);
 }
 // get characters from local storage
