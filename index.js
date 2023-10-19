@@ -96,8 +96,8 @@ if (
 // event listeners for likes and dislikes and page count
 window.addEventListener("click", (event) => {
   if (
-    window.location.pathname == "/index.html" ||
-    window.location.pathname == "/myFavourites.html"
+    window.location.pathname.includes("/index.html") ||
+    window.location.pathname.includes("/myFavourites.html")
   ) {
     let heroId = event.target.dataset.id;
     if (event.target.classList.contains("page-num")) {
@@ -113,7 +113,7 @@ window.addEventListener("click", (event) => {
 
       let heartContainer = document.getElementsByClassName(heroId);
       let arr;
-      if (window.location.pathname == "/index.html") {
+      if (window.location.pathname.includes("/index.html")) {
         arr = results;
       } else {
         arr = favouriteHeros;
@@ -156,8 +156,8 @@ window.addEventListener("click", (event) => {
           }
           favouriteHeros = JSON.parse(localStorage.getItem("favouriteHeros"));
           if (
-            window.location.pathname == "/myFavourites.html" ||
-            window.location.pathname == "/myFavourites"
+            window.location.pathname.includes("/myFavourites.html") ||
+            window.location.pathname.includes("/myFavourites")
           ) {
             getFavouriteCharacters();
           }
