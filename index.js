@@ -98,7 +98,11 @@ if (
 window.addEventListener("click", (event) => {
   if (
     window.location.pathname.includes("/index.html") ||
-    window.location.pathname.includes("/myFavourites.html")
+    window.location.pathname.includes("/myFavourites.html") ||
+    window.location.pathname == "/coding-ninjas-hero-hunter-js/" ||
+    window.location.pathname == "/" ||
+    window.location.pathname ==
+      "/coding-ninjas-hero-hunter-js/myFavourites.html"
   ) {
     let heroId = event.target.dataset.id;
     if (event.target.classList.contains("page-num")) {
