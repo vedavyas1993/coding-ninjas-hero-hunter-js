@@ -63,7 +63,8 @@ async function getCharacters(ofst) {
 
 if (
   window.location.pathname == "/index.html" ||
-  window.location.pathname == "/"
+  window.location.pathname == "/" ||
+  window.location.pathname == "/coding-ninjas-hero-hunter-js/"
 ) {
   getCharacters(offset);
 }
@@ -84,7 +85,8 @@ export function getFavouriteCharacters() {
 
 if (
   window.location.pathname == "/myFavourites.html" ||
-  window.location.pathname == "/myFavourites"
+  window.location.pathname == "/myFavourites" ||
+  window.location.pathname == "/coding-ninjas-hero-hunter-js/myFavourites.html"
 ) {
   let title = document.getElementsByTagName("title");
   title[0].innerText = "My Favourites";
