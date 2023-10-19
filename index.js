@@ -114,7 +114,11 @@ window.addEventListener("click", (event) => {
 
       let heartContainer = document.getElementsByClassName(heroId);
       let arr;
-      if (window.location.pathname.includes("/index.html")) {
+      if (
+        window.location.pathname.includes("/index.html") ||
+        window.location.pathname == "/coding-ninjas-hero-hunter-js/" ||
+        window.location.pathname == "/"
+      ) {
         arr = results;
       } else {
         arr = favouriteHeros;
