@@ -66,6 +66,7 @@ if (
   window.location.pathname == "/" ||
   window.location.pathname == "/coding-ninjas-hero-hunter-js/"
 ) {
+  console.log("triggrre");
   getCharacters(offset);
 }
 // get characters from local storage
