@@ -22,10 +22,12 @@ function addHeroToDOM(hero, searchResult) {
   let li = document.createElement("li");
   li.classList.add("d-flex");
   li.classList.add("position-relative");
-  li.innerHTML = `<a href="./superhero.html?id=${hero.id}" >
+  li.innerHTML = `<a href="./superhero.html?id=${
+    hero.id
+  }" class="search-hero-name">
               <img src="${hero.thumbnail.path + "." + hero.thumbnail.extension}"
                 class="search-img" alt="${hero.name}" data-id=${hero.id} />
-  <span>${hero.name}</span></a>
+  <span >${hero.name}</span></a>
               <div class="heart-container position-absolute ${hero.id}">
                       ${handleLikeAndDislike(hero, "search")}
               </div>`;
